@@ -30,8 +30,13 @@ object Main {
   def handler(in: InputStream, out: OutputStream, ctx: Context): Unit = {
     logger.info("lambda handler started")
     val jsonString = Source.fromInputStream(in).mkString
-    val parsedInput: Either[io.circe.Error, Input] = decode[Input](jsonString)
-    parsedInput match
+    logger.info(s"got json: $jsonString")
+    val payload =
+      parse(jsonString)
+        .map(_.hcursor.downField("responsePayload").`as`[Input])
+        .flatten
+    logger.info(s"got payload: $payload")
+    payload match
       case Left(err) =>
         logger.error(err.getMessage()) // LoggerはデフォルトではErrorレベルに設定されている?
       case Right(input) =>
