@@ -1,8 +1,17 @@
-## sbt project compiled with Scala 3
+## Sync ak4 status to GitHub Status
 
 ### Usage
 
-This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will start a Scala 3 REPL.
+Trigger this lambda by another lambda.
 
-For more information on the sbt-dotty plugin, see the
-[scala3-example-project](https://github.com/scala/scala3-example-project/blob/main/README.md).
+Trigger lambda should output either of one:
+
+```json
+{"status":"in"}
+```
+
+```json
+{"status":"out"}
+```
+
+`in` makes GitHub status to *not busy*(nominal). `out` makes GitHub status to *busy*.
