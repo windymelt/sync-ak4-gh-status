@@ -16,6 +16,10 @@ Trigger lambda should output either of one:
 
 `in` makes GitHub status to *not busy*(nominal). `out` makes GitHub status to *busy*.
 
+### Envvars
+
+- `GH_TOKEN`: GitHub Personal Access Token (needs permission to read/write user status)
+
 ### Deep inside
 
 This lambda parses JSON and look `responsePayload` field. Then attempt to parse the field as `Input`.
