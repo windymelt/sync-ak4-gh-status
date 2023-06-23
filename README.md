@@ -15,3 +15,15 @@ Trigger lambda should output either of one:
 ```
 
 `in` makes GitHub status to *not busy*(nominal). `out` makes GitHub status to *busy*.
+
+### Deep inside
+
+This lambda parses JSON and look `responsePayload` field. Then attempt to parse the field as `Input`.
+
+```scala
+case class Input(status: String)
+
+enum Status:
+  case In
+  case Out
+```
